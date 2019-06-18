@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="">
+	<title>3D</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<script type="text/javascript" src="sources/jquery.min.js"></script>
+	<script type="text/javascript" src="sources/auto_rotate.js"></script>
+	<script type="text/javascript" src="sources/rotateLR.js"></script>
+
+</head>
+<body>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.rot360d {
+			max-width: 400px;
+			text-align: center;
+			margin: 0 auto;
+		}
+	</style>
+
+	<h3 class="rot360d">LR</h3>
+	<div class="rot360d">
+		<div id="lr"><div class="table"></div></div>
+	</div>
+
+	<h3 class="rot360d">Auto</h3>
+	<div class="rot360d">
+		<div id="auto"></div>
+	</div>
+
+	<div class="rot360d" style="margin-bottom:50px">
+		<button class="stop">stop</button>
+		<button class="start">start</button>
+	</div>
+
+	<script>
+		$(document).ready(function(){
+			//lr
+			mouseLR(
+				$('#lr'),
+				700,//ширина 1
+				700,//высота 1
+				72,//количество кадров
+				'img/lr.jpg'//путь к картинке
+			);
+
+			//auto			
+			var x = init3d(
+                '#auto',
+                700,//ширина 1
+                700,//высота 1
+                8,//количество столбцов
+                9,//количество строк
+                'img/auto.jpg',//путь к картинке
+                85,//скорость
+				true,//loop = true - вечная прокрутка; false - один оборот
+				'down'//up - вперед, down - назад
+            );
+            
+			/*
+			var x = init3d(
+                '#auto',
+                700,//ширина 1
+                700,//высота 1
+                1,//количество столбцов
+                72,//количество строк
+                'img/lr.jpg',//путь к картинке
+                85,//скорость
+				true,//loop = true - вечная прокрутка; false - один оборот
+				'down'//up - вперед, down - назад
+            );
+            */
+            
+			$('.stop').on('click', function(){
+			    x.stop3d();
+		    });
+		    $('.start').on('click', function(){
+			    x.play3d();
+		    });
+		});
+	</script>
+</body>
+</html>
